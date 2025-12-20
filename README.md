@@ -4,9 +4,9 @@
 This project is an executive-grade LinkedIn Analytics Dashboard built with Python and Plotly Dash. It visualizes LinkedIn engagement data (impressions, followers, demographics, etc.) from Excel exports, providing insights into content performance and audience statistics.
 
 ## Project Structure
-- `dashboard.py`: The main application entry point.
+- `main.py`: The main program that executes and displays the dashboard.
 - `assets/`: Contains static assets like CSS files (`custom.css`).
-- `data/` (Assumed): Place your LinkedIn Excel export files here (e.g., `Content_...xlsx`).
+- `data/`: Place your LinkedIn Excel export files here (Example: `Content_...xlsx`).
 - `.gitignore`: Specifies intentionally untracked files to ignore.
 
 ## Prerequisites
