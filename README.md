@@ -1,5 +1,10 @@
 # LinkedIn Analytics Dashboard
 
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg)]()
+
 ## Overview
 This project is an executive-grade LinkedIn Analytics Dashboard built with Python and Plotly Dash. It visualizes LinkedIn engagement data (impressions, followers, demographics, etc.) from Excel exports, providing insights into content performance and audience statistics.
 
