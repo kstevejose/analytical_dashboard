@@ -60,7 +60,7 @@ body {
     box-shadow: 0 16px 35px rgba(0, 0, 0, 0.5);
     background: rgba(15, 23, 42, 0.96);
     backdrop-filter: blur(16px);
-    padding: 4px 0;
+    padding: 2px 0;          /* slightly reduced */
 }
 
 .kpi-card-primary {
@@ -84,7 +84,7 @@ body {
 }
 
 .card-kpi {
-    font-size: 1.7rem;
+    font-size: 1.4rem;
     font-weight: 700;
     color: #f9fafb;
     margin-bottom: 0;
@@ -113,3 +113,125 @@ body {
 .js-plotly-plot .plotly .main-svg {
     border-radius: 12px;
 }
+
+/* ----- Dropdown & DatePicker Enhancements ----- */
+/* Improve contrast and sizing for controls placed inside .filter-dropdown */
+.filter-dropdown .Select,
+.filter-dropdown .Select__control,
+.filter-dropdown .Select__control *,
+.filter-dropdown .css-1g6gooi-control {
+    background-color: #071026 !important; /* deeper dark */
+    color: #f5f5f5 !important;            /* light text */
+    border-radius: 10px !important;
+    border: 1px solid rgba(148,163,184,0.08) !important;
+}
+
+.filter-dropdown .Select__placeholder,
+.filter-dropdown .Select__single-value,
+.filter-dropdown .css-1uccc91-singleValue,
+.filter-dropdown .css-1wa3eu0-placeholder {
+    color: #e6eef8 !important;
+    opacity: 0.95;
+}
+
+.filter-dropdown .Select__menu,
+.filter-dropdown .Select-menu,
+.Select__menu {
+    background: #071026 !important;
+    color: #f5f5f5 !important;
+    border-radius: 8px !important;
+}
+
+/* DatePicker styling (react-dates) */
+.filter-dropdown .DateRangePicker,
+.filter-dropdown .DateRangePickerInput {
+    background: #071026;
+    border-radius: 10px;
+    padding: 6px 8px;
+    border: 1px solid rgba(148,163,184,0.08);
+}
+
+/* Input area — make background dark so text/selection is visible */
+.filter-dropdown .DateRangePickerInput_input__display_text,
+.filter-dropdown .DateInput_input {
+    color: #cbd5f5 !important;
+    background: #0b1830 !important; /* slightly lighter dark for the input */
+    font-size: 0.95rem;
+    padding: 6px 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(148,163,184,0.04) !important;
+}
+
+/* Placeholder styling */
+.filter-dropdown .DateInput_input::placeholder,
+.filter-dropdown .DateInput_input.DateInput_input__placeholder,
+.filter-dropdown .DateRangePickerInput_input__display_text.DateInput_input__placeholder {
+    color: rgba(230,238,248,0.45) !important;
+}
+
+/* Calendar icon / arrow color */
+.filter-dropdown .DateRangePickerInput_calendarIcon svg,
+.filter-dropdown .DateRangePickerInput_arrow_svg svg {
+    fill: #22c55e !important;
+    color: #22c55e !important;
+}
+
+/* Improve the calendar popup appearance */
+.DateRangePicker_picker,
+.rdrCalendarWrapper,
+.CalendarMonth {
+    background: #071026 !important;
+    color: #f5f5f5 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 12px 30px rgba(2,6,23,0.6);
+}
+
+.CalendarDay,
+.CalendarDay__default {
+    color: #e6eef8 !important;
+}
+
+.CalendarDay__selected,
+.CalendarDay__selected_span,
+.CalendarDay__hovered_span {
+        background: linear-gradient(90deg, #16a34a, #22c55e) !important; /* green gradient */
+        color: #ffffff !important;
+        border-radius: 6px;
+        box-shadow: 0 6px 18px rgba(34,197,94,0.28);
+    }
+
+    /* Make chosen date text and date inputs use green for visibility */
+    .filter-dropdown .DateRangePickerInput_input__display_text,
+    .filter-dropdown .DateInput_input:not(.DateInput_input__placeholder) {
+        color: #22c55e !important;
+        font-weight: 600;
+    }
+
+    /* Focus / open state should hint with green border */
+    .filter-dropdown .DateRangePickerInput--focused,
+    .filter-dropdown .DateRangePickerInput--open {
+        box-shadow: 0 6px 20px rgba(34,197,94,0.12);
+        border: 1px solid rgba(34,197,94,0.18);
+    }
+
+    /* Make date inputs a bit wider and aligned, and ensure dark background for default state */
+    .filter-dropdown .DateRangePickerInput_input,
+    .filter-dropdown .DateRangePickerInput_input__display_text,
+    .filter-dropdown .DateRangePickerInput_input__input,
+    .filter-dropdown .DateInput_input,
+    .filter-dropdown input[type="text"] {
+        min-width: 150px;
+        background: #0b1830 !important;
+        color: #cbd5f5 !important;
+        padding: 6px 8px !important;
+        border-radius: 8px !important;
+        border: 1px solid rgba(148,163,184,0.04) !important;
+        caret-color: #22c55e !important;
+    }
+
+    /* Placeholder styling */
+    .filter-dropdown .DateInput_input::placeholder,
+    .filter-dropdown .DateRangePickerInput_input__display_text.DateInput_input__placeholder,
+    .filter-dropdown .DateRangePickerInput_input__input::placeholder {
+        color: rgba(230,238,248,0.5) !important;
+    }
