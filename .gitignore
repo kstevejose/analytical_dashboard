@@ -1,10 +1,12 @@
 .venv/
 
 *.xlsx
-
-
+*.zip
+*.csv
 *.py
+
 
 steve/
 
-data/
+main.ipynb
+reactions.ipynb
