@@ -1,239 +1,372 @@
-/* Global container */
-html,
-body {
-    height: 100%;
-    margin: 0;
+/* Elegant jaw-dropping theme for Dash */
+/* Google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600&display=swap');
+
+:root{
+  --bg-dark: #071224;
+  --panel: rgba(255,255,255,0.03);
+  --panel-strong: rgba(255,255,255,0.045);
+  --glass: rgba(255,255,255,0.06);
+  --text: #E8F0FF;
+  --muted: rgba(232,240,255,0.65);
+  --accent1: #00D2FF; /* teal */
+  --accent2: #7C4DFF; /* violet */
+  --accent-grad: linear-gradient(135deg, var(--accent2) 0%, var(--accent1) 100%);
+  --gold: #FFC857;
+  --glass-blur: 8px;
 }
 
+/* Page background with subtle gradients */
 .app-container {
-    background: radial-gradient(circle at top left, #121826 0, #050816 50%, #050510 100%);
-    min-height: 100vh;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    color: #f5f5f5;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    overflow-y: auto;
-    /* allow vertical scroll */
+  min-height: 100vh;
+  padding: 24px;
+  background:
+    radial-gradient(400px 200px at 8% 12%, rgba(239, 48, 0, 0.1), transparent 10%),
+    radial-gradient(300px 160px at 92% 88%, rgba(0,210,255,0.06), transparent 8%),
+    linear-gradient(180deg, #031425 0%, var(--bg-dark) 100%);
+  color: var(--text);
+  font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
-
 
 /* Header */
 .app-header {
-    background: linear-gradient(135deg, #5033ff, #a855f7);
-    border-radius: 16px;
-    padding: 12px 20px;
-    /* slightly tighter */
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
-    color: #ffffff;
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(206, 9, 117, 0.02), rgba(255, 255, 255, 0.01));
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  box-shadow: 0 6px 30px rgba(2,8,23,0.5), inset 0 -1px 0 rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255,255,255,0.03);
+  justify-content: space-between;
 }
+.header-title { display:flex; flex-direction:column; gap:4px; }
+.header-actions { display:flex; align-items:center; gap:8px; }
 
 .app-header h2 {
-    font-weight: 700;
-    margin-bottom: 2px;
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  color: var(--text);
+  font-weight: 700;
+  letter-spacing: -0.4px;
 }
+.app-header p { margin:0; color:var(--muted); }
 
-.app-header p {
-    opacity: 0.85;
-    font-size: 0.9rem;
+/* Refresh button styles */
+.btn-refresh {
+  --btn-bg: linear-gradient(90deg, rgba(124,77,255,0.18), rgba(0,210,255,0.14));
+  background: var(--btn-bg);
+  color: var(--text) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  box-shadow: 0 8px 30px rgba(2,8,23,0.45);
+  transition: transform 150ms ease, box-shadow 150ms ease, opacity 150ms ease;
+}
+.btn-refresh:hover { transform: translateY(-3px); box-shadow: 0 18px 50px rgba(2,8,23,0.6); opacity: 0.98; }
+.btn-refresh:active { transform: translateY(-1px); }
+
+@media (max-width: 480px) {
+  .btn-refresh { padding: 6px 9px; font-size: 0.9rem; }
 }
 
 /* Filters */
-.filter-label {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #cbd5f5;
-    margin-bottom: 2px;
+.filter-label { color: var(--muted); font-size: 0.9rem; font-weight:600; }
+.filter-dropdown { width:100%; }
+
+.filter-dropdown .Select, .filter-dropdown .Select-control { 
+  border-radius: 10px !important; 
 }
 
-.filter-dropdown .Select-control,
-.filter-dropdown .Select__control {
-    background-color: #050816 !important;
-    border-radius: 10px !important;
-    border-color: #4b5563 !important;
-}
-
-/* KPI Cards */
+/* KPI cards */
 .kpi-card {
-    border-radius: 16px;
-    border: none;
-    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.5);
-    background: rgba(15, 23, 42, 0.96);
-    backdrop-filter: blur(16px);
-    padding: 2px 0;          /* slightly reduced */
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+  position: relative;
+  overflow: visible;
 }
+.kpi-card:hover { transform: translateY(-6px); box-shadow: 0 18px 60px rgba(0,0,0,0.7); }
 
-.kpi-card-primary {
-    border-top: 4px solid #6366f1;
+/* accent stripe */
+.kpi-card.kpi-card-primary::before,
+.kpi-card.kpi-card-secondary::before,
+.kpi-card.kpi-card-accent::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 6px;
+  border-radius: 12px 0 0 12px;
 }
+.kpi-card.kpi-card-primary::before { background: var(--accent-grad); }
+.kpi-card.kpi-card-secondary::before { background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); }
+.kpi-card.kpi-card-accent::before { background: linear-gradient(180deg, var(--gold), rgba(255,200,80,0.75)); }
 
-.kpi-card-secondary {
-    border-top: 4px solid #22c55e;
-}
-
-.kpi-card-accent {
-    border-top: 4px solid #f97316;
-}
-
-.card-title-text {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: #9ca3af;
-    margin-bottom: 2px;
-}
-
+/* KPI text / number */
+.card-title-text { color: var(--muted); margin-bottom: 6px; font-weight:600; font-size:0.9rem; }
 .card-kpi {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #f9fafb;
-    margin-bottom: 0;
+  font-family: 'Poppins', system-ui;
+  font-weight: 700;
+  font-size: 1.6rem;
+  margin: 0;
+  /* gradient text for numbers */
+  background: var(--accent-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 4px 18px rgba(124,77,255,0.12);
 }
 
 /* Chart cards */
 .chart-card {
-    border-radius: 18px;
-    border: none;
-    background: rgba(15, 23, 42, 0.96);
-    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.55);
-    height: 34vh;
-    /* chart cards share remaining height */
-    padding: 8px 8px 4px 8px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.017), rgba(255,255,255,0.008));
+  border: 1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 6px 30px rgba(2,8,23,0.6);
+  padding: 0;
+}
+.chart-title { margin: 0 0 8px 0; color: var(--muted); font-weight: 600; }
+
+/* Make plotly graphs sit nicely on transparent background */
+.js-plotly-plot .plotly {
+  background: transparent !important;
+}
+.dcc-graph, .js-plotly-plot { border-radius: 8px; overflow: visible; }
+
+/* Tooltip and hover styles */
+.card-kpi small, .card-kpi .muted { color: var(--muted); }
+
+/* Make the modebar subtle */
+.plotly .modebar { 
+  background: rgba(0,0,0,0.35) !important; 
+  border-radius: 8px !important;
+  border: 1px solid rgba(255,255,255,0.03) !important;
 }
 
-.chart-title {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    color: #9ca3af;
-    margin-bottom: 4px;
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .card-kpi { font-size: 1.2rem; }
+  .app-header { flex-direction: column; align-items:flex-start; gap:8px; }
 }
 
-/* Graph background */
-.js-plotly-plot .plotly .main-svg {
-    border-radius: 12px;
+/* -----------------------------
+   Form controls: dropdowns + date range
+   - Contrast the selected/placeholder text from white
+   - Make dropdown MENU + options clearly visible with dark bg and contrasting text
+   - Give DatePickerRange a frosted glass, classy look
+   ----------------------------- */
+
+/* Target the filter wrapper (we use className="filter-dropdown") and specific ids */
+.filter-dropdown,
+.filter-dropdown * {
+  /* ensure child text inherits when appropriate */
+  color: var(--muted);
 }
 
-/* ----- Dropdown & DatePicker Enhancements ----- */
-/* Improve contrast and sizing for controls placed inside .filter-dropdown */
-.filter-dropdown .Select,
-.filter-dropdown .Select__control,
-.filter-dropdown .Select__control *,
-.filter-dropdown .css-1g6gooi-control {
-    background-color: #071026 !important; /* deeper dark */
-    color: #f5f5f5 !important;            /* light text */
-    border-radius: 10px !important;
-    border: 1px solid rgba(148,163,184,0.08) !important;
+/* Strong contrasting color for selected values / placeholders (gold) */
+#year-dropdown, #period-dropdown {
+  color: var(--gold);
 }
 
-.filter-dropdown .Select__placeholder,
-.filter-dropdown .Select__single-value,
-.filter-dropdown .css-1uccc91-singleValue,
-.filter-dropdown .css-1wa3eu0-placeholder {
-    color: #e6eef8 !important;
-    opacity: 0.95;
+/* react-select / dash dropdown control area (value shown) */
+#year-dropdown .Select__control, #period-dropdown .Select__control,
+#year-dropdown .Select, #period-dropdown .Select,
+#year-dropdown .Select-control, #period-dropdown .Select-control,
+#year-dropdown .css-1hwfws3, #period-dropdown .css-1hwfws3,
+#year-dropdown .css-1uccc91-singleValue, #period-dropdown .css-1uccc91-singleValue {
+  color: var(--gold) !important;
 }
 
-.filter-dropdown .Select__menu,
-.filter-dropdown .Select-menu,
-.Select__menu {
-    background: #071026 !important;
-    color: #f5f5f5 !important;
-    border-radius: 8px !important;
+#year-dropdown .Select-placeholder, #period-dropdown .Select-placeholder,
+#year-dropdown .css-1wa3eu0-placeholder, #period-dropdown .css-1wa3eu0-placeholder {
+  color: rgba(255,200,87,0.95) !important;
 }
 
-/* DatePicker styling (react-dates) */
-.filter-dropdown .DateRangePicker,
-.filter-dropdown .DateRangePickerInput {
-    background: #071026;
-    border-radius: 10px;
-    padding: 6px 8px;
-    border: 1px solid rgba(148,163,184,0.08);
+/* Make the dropdown value area subtly highlighted */
+#year-dropdown .Select__control, #period-dropdown .Select__control,
+#year-dropdown .Select-control, #period-dropdown .Select-control {
+  background: linear-gradient(180deg, rgba(255,200,87,0.03), rgba(255,200,87,0.01));
+  border: 1px solid rgba(255,200,87,0.06) !important;
+  box-shadow: inset 0 6px 18px rgba(255,200,87,0.02);
+  border-radius: 10px;
+  padding: 4px 8px;
 }
 
-/* Input area — make background dark so text/selection is visible */
-.filter-dropdown .DateRangePickerInput_input__display_text,
-.filter-dropdown .DateInput_input {
-    color: #cbd5f5 !important;
-    background: #0b1830 !important; /* slightly lighter dark for the input */
-    font-size: 0.95rem;
-    padding: 6px 8px;
-    border-radius: 8px;
-    border: 1px solid rgba(148,163,184,0.04) !important;
+/* -----------------------------
+   Dropdown MENU + OPTION styling (fixes white-on-white selection issue)
+   broad selectors to cover dash/react-select variants
+   ----------------------------- */
+
+/* MENU container */
+#year-dropdown .Select__menu, #period-dropdown .Select__menu,
+#year-dropdown .Select-menu, #period-dropdown .Select-menu,
+#year-dropdown .css-26l3qy-menu, #period-dropdown .css-26l3qy-menu,
+#year-dropdown .dropdown-menu, #period-dropdown .dropdown-menu,
+#year-dropdown .menu, #period-dropdown .menu {
+  background: rgba(3,6,12,0.98) !important; /* dark backdrop */
+  color: var(--text) !important;
+  border: 1px solid rgba(255,255,255,0.04) !important;
+  box-shadow: 0 12px 40px rgba(2,8,23,0.6);
+  border-radius: 10px;
+  padding: 6px 6px;
 }
 
-/* Placeholder styling */
-.filter-dropdown .DateInput_input::placeholder,
-.filter-dropdown .DateInput_input.DateInput_input__placeholder,
-.filter-dropdown .DateRangePickerInput_input__display_text.DateInput_input__placeholder {
-    color: rgba(230,238,248,0.45) !important;
+/* Scrollable menu list */
+#year-dropdown .Select__menu-list, #period-dropdown .Select__menu-list,
+#year-dropdown .menu-list, #period-dropdown .menu-list {
+  color: var(--text) !important;
 }
 
-/* Calendar icon / arrow color */
-.filter-dropdown .DateRangePickerInput_calendarIcon svg,
-.filter-dropdown .DateRangePickerInput_arrow_svg svg {
-    fill: #22c55e !important;
-    color: #22c55e !important;
+/* Option items */
+#year-dropdown .Select__option, #period-dropdown .Select__option,
+#year-dropdown .Select-option, #period-dropdown .Select-option,
+#year-dropdown .css-yt9ioa-option, #period-dropdown .css-yt9ioa-option,
+#year-dropdown .option, #period-dropdown .option {
+  color: var(--text) !important;
+  background: transparent !important;
+  padding: 8px 10px;
+  border-radius: 8px;
+  margin: 2px 0;
 }
 
-/* Improve the calendar popup appearance */
+/* Focused / hovered option */
+#year-dropdown .Select__option--is-focused, #period-dropdown .Select__option--is-focused,
+#year-dropdown .Select-option.is-focused, #period-dropdown .Select-option.is-focused,
+#year-dropdown .css-1n7v3ny-option--is-focused, #period-dropdown .css-1n7v3ny-option--is-focused {
+  background: rgba(124,77,255,0.14) !important; /* subtle violet highlight */
+  color: var(--text) !important;
+}
+
+/* Selected option */
+#year-dropdown .Select__option--is-selected, #period-dropdown .Select__option--is-selected,
+#year-dropdown .Select-option.is-selected, #period-dropdown .Select-option.is-selected,
+#year-dropdown .css-yt9ioa-option.is-selected, #period-dropdown .css-yt9ioa-option.is-selected {
+  background: var(--gold) !important; /* strong contrast */
+  color: #031425 !important; /* dark text on gold */
+  font-weight: 600;
+}
+
+/* If react-select uses custom classes (safety fallback) */
+#year-dropdown [role="option"], #period-dropdown [role="option"] {
+  color: var(--text) !important;
+}
+
+/* -----------------------------
+   DatePickerRange inputs
+   ----------------------------- */
+#date-range-picker {
+  display: block;
+}
+
+#date-range-picker input {
+  color: var(--gold) !important;
+  background: linear-gradient(180deg, rgba(68, 60, 46, 0.03), rgba(255,200,87,0.01));
+  border: 1px solid rgba(255,200,87,0.08);
+  padding: 8px 10px;
+  border-radius: 10px;
+  min-width: 120px;
+  box-shadow: 0 6px 22px rgba(2,8,23,0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+#date-range-picker .DateInput, #date-range-picker .DateInput_input {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#date-range-picker input:focus {
+  outline: none;
+  box-shadow: 0 0 0 6px rgba(255,200,87,0.06);
+  border-color: var(--gold);
+}
+
+/* Small visual separator between the inputs */
+#date-range-picker .DateInput_input__display_text, #date-range-picker .DateRangePickerInput_arrow {
+  color: var(--muted);
+}
+
+/* Make calendar popover match theme (when visible) */
+/* Stronger, broader selector set to override datepicker defaults */
+.SingleDatePicker_picker,
 .DateRangePicker_picker,
-.rdrCalendarWrapper,
-.CalendarMonth {
-    background: #071026 !important;
-    color: #f5f5f5 !important;
-    border-radius: 8px !important;
-    box-shadow: 0 12px 30px rgba(2,6,23,0.6);
+.DateRangePicker,
+.CalendarMonth,
+.CalendarMonthGrid,
+.DayPicker,
+.DayPickerNavigation,
+.DayPickerNavigation_button,
+.CalendarDay {
+  background: linear-gradient(180deg, rgba(3,6,12,0.98), rgba(7,18,36,0.98)) !important;
+  border: 1px solid rgba(255,255,255,0.04) !important;
+  color: var(--text) !important;
+  box-shadow: 0 12px 40px rgba(2,8,23,0.6) !important;
+  border-radius: 10px;
 }
 
-.CalendarDay,
-.CalendarDay__default {
-    color: #e6eef8 !important;
+/* Month caption (e.g., "March 2025") */
+.CalendarMonth_caption, .CalendarMonth__caption {
+  color: var(--text) !important;
+  font-weight: 700;
+  font-family: 'Poppins', system-ui;
+  background: transparent !important;
+  padding: 10px 0 6px 0;
+  text-align: center;
 }
 
-.CalendarDay__selected,
-.CalendarDay__selected_span,
-.CalendarDay__hovered_span {
-        background: linear-gradient(90deg, #16a34a, #22c55e) !important; /* green gradient */
-        color: #ffffff !important;
-        border-radius: 6px;
-        box-shadow: 0 6px 18px rgba(34,197,94,0.28);
-    }
+/* Nav buttons */
+.DayPickerNavigation_button, .DayPickerNavigation_button__default, .DayPickerNavigation_button__horizontalDefault {
+  background: rgba(255,255,255,0.02) !important;
+  border: 1px solid rgba(255,255,255,0.03) !important;
+  color: var(--text) !important;
+  border-radius: 8px;
+  padding: 6px;
+}
 
-    /* Make chosen date text and date inputs use green for visibility */
-    .filter-dropdown .DateRangePickerInput_input__display_text,
-    .filter-dropdown .DateInput_input:not(.DateInput_input__placeholder) {
-        color: #22c55e !important;
-        font-weight: 600;
-    }
+/* Weekday names */
+.DayPicker_weekHeader, .CalendarDay__weekDay, .Calendar_day__weekday {
+  color: rgba(232,240,255,0.65) !important;
+  font-weight: 600;
+}
 
-    /* Focus / open state should hint with green border */
-    .filter-dropdown .DateRangePickerInput--focused,
-    .filter-dropdown .DateRangePickerInput--open {
-        box-shadow: 0 6px 20px rgba(34,197,94,0.12);
-        border: 1px solid rgba(34,197,94,0.18);
-    }
+/* Day cells */
+.CalendarDay, .CalendarDay__default, .CalendarDay__blocked, .CalendarDay__hovered_span {
+  background: transparent !important;
+  color: var(--muted) !important;
+  border-radius: 6px;
+  border: none !important;
+}
 
-    /* Make date inputs a bit wider and aligned, and ensure dark background for default state */
-    .filter-dropdown .DateRangePickerInput_input,
-    .filter-dropdown .DateRangePickerInput_input__display_text,
-    .filter-dropdown .DateRangePickerInput_input__input,
-    .filter-dropdown .DateInput_input,
-    .filter-dropdown input[type="text"] {
-        min-width: 150px;
-        background: #0b1830 !important;
-        color: #cbd5f5 !important;
-        padding: 6px 8px !important;
-        border-radius: 8px !important;
-        border: 1px solid rgba(148,163,184,0.04) !important;
-        caret-color: #22c55e !important;
-    }
+/* Selected days and range */
+.CalendarDay__selected, .CalendarDay--selected, .CalendarDay__selected_span, .CalendarDay--selected_span {
+  background: var(--gold) !important;
+  color: #031425 !important;
+  font-weight: 700;
+  box-shadow: none !important;
+}
 
-    /* Placeholder styling */
-    .filter-dropdown .DateInput_input::placeholder,
-    .filter-dropdown .DateRangePickerInput_input__display_text.DateInput_input__placeholder,
-    .filter-dropdown .DateRangePickerInput_input__input::placeholder {
-        color: rgba(230,238,248,0.5) !important;
-    }
+/* Hovered day */
+.CalendarDay__hovered_span, .CalendarDay--hovered_span, .CalendarDay__hovered_span:hover {
+  background: rgba(124,77,255,0.12) !important; /* subtle violet highlight */
+  color: var(--text) !important;
+}
 
+/* Month container padding fix */
+.CalendarMonth, .CalendarMonthGrid { padding: 8px !important; }
 
+/* Accessibility: ensure options are legible */
+[role="application"] .CalendarDay, [role="application"] .CalendarMonth_caption {
+  color: var(--text) !important;
+}
+
+/* Improve mobile spacing slightly */
+@media (max-width: 480px) {
+  #date-range-picker input { min-width: 100px; padding: 6px 8px; }
+}
