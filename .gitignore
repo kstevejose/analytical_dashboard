@@ -10,3 +10,7 @@ steve/
 
 main.ipynb
 reactions.ipynb
+
+# Ignore files inside data but keep the folder
+data/*
+!data/.gitkeep
