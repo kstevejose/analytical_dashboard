@@ -6,10 +6,10 @@
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg)]()
 
 ## Overview
-This project is an executive-grade LinkedIn Analytics Dashboard built with Python and Plotly Dash. It visualizes LinkedIn engagement data (impressions, followers, demographics, etc.) from Excel exports, providing insights into content performance and audience statistics.
+This project is an executive-grade LinkedIn Analytics Dashboard built with Python and Plotly Dash. It visualizes LinkedIn engagement data (impressions, followers, demographics) from Excel exports, providing insights into content performance and audience statistics.
 
 ## Project Structure
-- `main.py`: The main program that executes and displays the dashboard.
+- `dashboard.ipynb`: The main program that executes and displays the dashboard.
 - `assets/`: Contains static assets like CSS files (`custom.css`).
 - `data/`: Place your LinkedIn Excel export files here (Example: `Content_...xlsx`).
 - `.gitignore`: Specifies untracked files to ignore.
@@ -42,11 +42,11 @@ This project is an executive-grade LinkedIn Analytics Dashboard built with Pytho
 1.  **Prepare Data**: Ensure your LinkedIn data Excel files (For Example, `Content_...xlsx`) are in the project's `data` folder.
 
 2.  **Run the Dashboard**:
-    Open your jupyter notebook and select "Click All".
+    Open your `dashboard.ipynb` and select "Run All" or execute each cell one after the other(to see what's happening).
 
 3.  **Access the Dashboard**:
-    Open your web browser and go to `http://127.0.0.1:8050/`. 
+    Open your web browser and go to `http://127.0.0.1:8051/`. 
 
-    **Note**: If you have other programs running on the port, change your port number.
+    **Note**: If you have other programs running on the same port, change your port number.
 
 
